@@ -1,0 +1,43 @@
+.reveal section img {
+    border: 0;
+}
+
+.column-2 {
+    display: inline-block;
+    vertical-align: top !important;
+    width: 49%
+}
+
+.code {
+    font-family: monospace !important;
+}
+
+.reveal h1 {
+  font-size: 2em ;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  text-transform: none;
+  }
+
+.reveal .footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  font-size: 0.5em;
+  width:100%;
+  color: gray;
+}
+.reveal .footer img {
+  height: 1em;
+}
+
+.reveal.overview .footer {
+  display: none;
+}

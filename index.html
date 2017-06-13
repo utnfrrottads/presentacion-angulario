@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Angular 2, 4 </title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/white.css">
+        <link rel="stylesheet" href="css/presentation.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+              <section>
+                <h1>Angular 2 - 4</h1>
+                <h2>Utn Rosario</h2>
+                <h3>TTADS</h3>
+                <h3>
+                  <a href="https://github.com/utnfrrottads/">
+
+                    Técnicas y Tecnologías Avanzadas de Desarrollo de Software</a>
+                </h3>
+                <p>
+                  <a href="https://github.com/aotaduy">Ing. Andres Otaduy</a>
+                </p>
+            </section>
+
+
+            <section>
+              <section>
+                <h1>Angular 2 Intro</h1>
+                <ul>
+                  <li>TypeScript -> ES6</li>
+                  <li>Modules Ng and ES6</li>
+                  <li>Components</li>
+                  <li>Templates</li>
+                  <li>Bootstraping</li>
+                  <li>Data Binding</li>
+                  <li>Directives</li>
+                  <li>Services</li>
+                  <li>HTTP</li>
+                </ul>
+              </section>
+              <section>
+                <h1>Angular 2 Ventajas</h1>
+                <ul>
+                  <li>TypeScript y ES6</li>
+                  <li>Arquitectura de Componentes</li>
+                  <li>Modularidad (ES6)</li>
+                  <li>RxJs - Reactive Programming</li>
+                  <li>Mejor Performance</li>
+                  <li>Architecture un poco mas simple</li>
+                  <li>CSS Modular</li>
+                  <li>Mejor deteccion de cambios</li>
+                </ul>
+              </section>
+              <section>
+                <h1>Angular 2 Contras</h1>
+                <ul>
+                  <li>Todavia esta muy nuevo</li>
+                  <li>Usa TypeScript</li>
+                  <li>Cambio total con respecto a angular 1</li>
+                  <li>Complejo</li>
+                  <li>Syntaxis de los templates</li>
+                  <li></li>
+                </ul>
+              </section>
+              <section>
+                <h1>Arquitectura</h1>
+                <img src="img/ng2-architecture.png" alt="" />
+              </section>
+              <section>
+                <h1>Componentes</h1>
+                <ul>
+                  <li>Se definen como clases con anotaciones</li>
+                  <li>La instancia se vincula al template</li>
+                  <li>Dependencias Explicitas</li>
+                  <li>HOjas de Estilos</li>
+                  <li>Usa el Shadow Dom</li>
+                  <li>Callbacks del ciclo de vida (hooks)</li>
+                </ul>
+              </section>
+              <section>
+                <h1>Sintaxis de un componente</h1>
+                <pre><code class="ts">import { Component } from '@angular/core';
+import {TodoItem} from './todo-item'
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css']
+})
+export class AppComponent {
+  title = 'app works!';
+  list: Array&lt;TodoItem&gt;;
+  item: TodoItem;
+
+  constructor() {
+    this.list = [];
+    this.item = new TodoItem;
+  }
+
+  add( anItem: TodoItem) {
+    this.list.push(anItem);
+    this.item = new TodoItem;
+  }
+
+  remove( index: number) {
+    this.list.splice(index,1);
+  }
+}</code></pre>
+              </section>
+              <section>
+                <h1>Templates</h1>
+<pre><code class="html">
+&lt;h1 [ngClass]=&quot;{&apos;big&apos;: list.length &gt; 5}&quot; &gt;Todo {{list.length}}&lt;/h1&gt;&#10;  &lt;input type=&quot;text&quot; [(ngModel)]=&quot;item.text&quot;&gt;&#10;  &lt;input type=&quot;button&quot;  value=&quot;Add&quot; (click)=&quot;add(item)&quot;&gt;&#10;  &lt;ul&gt;&#10;    &lt;li&#10;    [ngClass]=&quot;{&apos;done&apos;: todoItem.done}&quot; \&#10;    *ngFor=&quot;let todoItem of list; let i = index&quot;&gt;&#10;      &lt;input type=&quot;checkbox&quot; [(ngModel)]=&quot;todoItem.done&quot;&gt;&#10;        {{todoItem.text}}&#10;        &lt;input&#10;          *ngIf=&quot;todoItem.done&quot;&#10;          (click)=&quot;remove(i)&quot;&#10;          type=&quot;button&quot;&#10;          name=&quot;name&quot;&#10;          value=&quot;X&quot;&gt;&#10;      &lt;/li&gt;&#10;  &lt;/ul&gt;
+</code></pre>
+              </section>
+              <section>
+                <h1>Elementos de un template</h1>
+                <ul>
+                  <li> Propiedades del DOM y Attributos de HTML</li>
+                  <li>bindings {{}} sin efectos secundarios: expresiones</li>
+                  <li>attribute []</li>
+                  <li>events (): Statements $event available</li>
+                  <li>Two Way [()]</li>
+                  <li>Directives</li>
+                  <li>Components</li>
+                  <li>Pipes</li>
+                </ul>
+              </section>
+              <section>
+                <h1>{{Expresiones de un Template}}</h1>
+                <ul>
+                  <li>sin efectos secundarios =, new, ++ ;</li>
+                  <li>El scope es la instancia del componente</li>
+                  <li>No hay espacio de nombres global</li>
+                  <li>Rapido</li>
+                  <li>Simple</li>
+                  <li>Idempotente </li>
+                </ul>
+                <h2>Template Statements</h2>
+              </section>
+
+              <section>
+                <h1>Bindings de Atributos, Clases y Estilos </h1>
+                <pre><code class="js">&lt;table border=1&gt;&#10;  &lt;!--  expression calculates colspan=2 --&gt;&#10;  &lt;tr&gt;&lt;td [attr.colspan]=&quot;1 + 1&quot;&gt;One-Two&lt;/td&gt;&lt;/tr&gt;&#10;&#10;  &lt;!-- ERROR: There is no `colspan` property to set!&#10;    &lt;tr&gt;&lt;td colspan=&quot;{{1 + 1}}&quot;&gt;Three-Four&lt;/td&gt;&lt;/tr&gt;&#10;  --&gt;&#10;&#10;  &lt;tr&gt;&lt;td&gt;Five&lt;/td&gt;&lt;td&gt;Six&lt;/td&gt;&lt;/tr&gt;&#10;&lt;/table&gt;</code></pre>
+              </section>
+            <section>
+              <h1>Clase Binding</h1>
+              <pre><code class="html">&lt;!-- toggle the &quot;special&quot; class on/off with a property --&gt;&#10;&lt;div [class.special]=&quot;isSpecial&quot;&gt;The class binding is special&lt;/div&gt;&#10;&#10;&lt;!-- binding to `class.special` trumps the class attribute --&gt;&#10;&lt;div class=&quot;special&quot;&#10;     [class.special]=&quot;!isSpecial&quot;&gt;This one is not so special&lt;/div&gt;&#10;</code></pre>
+            </section>
+            <section>
+              <h1>Estiilo Binding</h1>
+              <pre><code class="html">&lt;button [style.color] = &quot;isSpecial ? &apos;red&apos;: &apos;green&apos;&quot;&gt;Red&lt;/button&gt;&#10;&lt;button [style.background-color]=&quot;canSave ? &apos;cyan&apos;: &apos;grey&apos;&quot; &gt;Save&lt;/button&gt;&#10;&lt;button [style.font-size.em]=&quot;isSpecial ? 3 : 1&quot; &gt;Big&lt;/button&gt;&#10;&lt;button [style.font-size.%]=&quot;!isSpecial ? 150 : 50&quot; &gt;Small&lt;/button&gt;
+</code></pre>
+            </section>
+            <section>
+              <h1>Directivas del framework</h1>
+              <ul>
+                <li>Muchas de Angular 1 no hacen falta</li>
+                <li>NgClass, NGStyle</li>
+                <li>*NgId *NgFor *NgSwitch</li>
+              </ul>
+            </section>
+            <section>
+              <h1>Variables de Referencia de un template</h1>
+              <pre><code class="html">
+&lt;!-- phone refers to the input element; pass its `value` to an event handler --&gt;&#10;  &lt;input #phone placeholder=&quot;phone number&quot;&gt;&#10;  &lt;button (click)=&quot;callPhone(phone.value)&quot;&gt;Call&lt;/button&gt;&#10;&#10;  &lt;!-- fax refers to the input element; pass its `value` to an event handler --&gt;&#10;  &lt;input ref-fax placeholder=&quot;fax number&quot;&gt;&#10;  &lt;button (click)=&quot;callFax(fax.value)&quot;&gt;Fax&lt;/button&gt;&#10;</code></pre>
+            </section>
+            <section>
+              <h1>Modulos y NgModule</h1>
+              <pre><code class="js">export class ZipCodeValidator implements StringValidator {
+    isAcceptable(s: string) {
+        return s.length === 5 && numberRegexp.test(s);
+    }
+}</code></pre>
+<pre><code class="js">import { ZipCodeValidator } from "./ZipCodeValidator";
+
+let myValidator = new ZipCodeValidator();</code></pre>
+<pre><code class="js"> NgModule(options : {&#10;constructor(options?: NgModuleMetadataType)&#10;providers : Provider[]&#10;declarations : Array&lt;Type&lt;any&gt;|any[]&gt;&#10;imports : Array&lt;Type&lt;any&gt;|ModuleWithProviders|any[]&gt;&#10;exports : Array&lt;Type&lt;any&gt;|any[]&gt;&#10;entryComponents : Array&lt;Type&lt;any&gt;|any[]&gt;&#10;bootstrap : Array&lt;Type&lt;any&gt;|any[]&gt;&#10;schemas : Array&lt;SchemaMetadata|any[]&gt;&#10;}) </code></pre>
+            </section>
+            <section>
+              <h1>Subcomponentes Input and Output</h1>
+              <pre><code class="js">import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+import {TodoItem} from './todo-item';
+
+@Component({
+    selector: 'todo-line',
+    template: `
+    &lt;input type=&quot;checkbox&quot; [(ngModel)]=&quot;item.done&quot;&gt;&#10;      {{item.text}}&#10;      &lt;input type=&quot;button&quot; name=&quot;name&quot; value=&quot;X&quot; (click)=&quot;remove(item)&quot;&gt;
+`
+})
+export class TodoLine {
+  @Input() item: TodoItem;
+  @Output() removeRequested: EventEmitter&lt;any&gt; = new EventEmitter();
+
+  remove( index: number) {
+    this.removeRequested.emit(this.item)
+  }
+}</code></pre>
+            </section>
+            <section>
+              <h1>Bootstraping</h1>
+              <pre><code class="js">import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app.module';
+
+platformBrowserDynamic().bootstrapModule(AppModule);</code></pre>
+            </section>
+            </section>
+            </div>
+            <div class="footer">
+              <a href="https://github.com/aotaduy"></a>
+              <span>Ing. Andres Otaduy</span>
+
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+                center: false,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
