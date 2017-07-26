@@ -178,6 +178,213 @@ export class AppComponent {
               </ul>
             </section>
             <section>
+              <h1>Eventos de un componente</h1>
+              <pre><code class="js">import {Component} from '@angular/core';
+
+@Component({
+  selector: 'counter',
+  template: `
+    <div>
+      <p>Count: {{num}}</p>
+      <button (click)="increment()">Increment</button>
+    </div>
+  `
+})
+export class CounterComponent {
+  num = 0;
+
+  increment() {
+    this.num++;
+  }
+}</code></pre>
+            </section>
+            <section>
+              <h1>Eventos de un componente</h1>
+              <pre><code class="js">import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+@Component({
+  selector: 'counter',
+  templateUrl: 'app/counter.component.html'
+})
+export class CounterComponent {
+  @Input()  count = 0;
+  @Output() result = new EventEmitter<number>();
+
+  increment() {
+    this.count++;
+    this.result.emit(this.count);
+  }
+}</code></pre>
+            </section>
+            <section>
+              <h1>Two Way Binding</h1>
+              <pre><code class="html"><input [(ngModel)]="name" >
+<input [ngModel]="name" (ngModelChange)="name=$event"></code></pre>
+<pre><code class="js">import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'counter',
+  templateUrl: 'app/counter.component.html'
+})
+export class CounterComponent {
+  @Input() count = 0;
+  @Output() countChange = EventEmitter<number>();
+
+  increment() {
+    this.count++;
+    this.countChange.emit(this.count);
+  }
+}</code></pre>
+            </section>
+            <section>
+              <h1>Projeccion de Contenido</h1>
+              <pre><code class="js">import { Component } from '@angular/core';
+
+@Component({
+  selector: 'child',
+  template: `
+    <div style="border: 1px solid blue; padding: 1rem;">
+      <h4>Child Component</h4>
+      <ng-content></ng-content>
+    </div>
+  `
+})
+export class ChildComponent {
+}</code></pre>
+<pre><code class="html"> <child>
+    <p>Contenido proyectado.</p>
+  </child></code></pre>
+            </section>
+            <section>
+              <h1>Seleccion de contenido proyectado</h1>
+              <pre><code class="html">
+<rio-child-select>
+  <section>Section Content</section>
+  <div class="class-select">
+    div with .class-select
+  </div>
+  <footer>Footer Content</footer>
+  <header>Header Content</header>
+</rio-child-select></code></pre>
+            </section>
+            <section>
+              <h1>Seleccion de contenido proyectado</h1>
+              <pre><code class="html"><div style="...">
+  <h4>Child Component with Select</h4>
+  <div style="...">
+    <ng-content select="header"></ng-content>
+  </div>
+  <div style="...">
+    <ng-content select="section"></ng-content>
+  </div>
+  <div style="...">
+    <ng-content select=".class-select"></ng-content>
+  </div>
+  <div style="...">
+    <ng-content select="footer"></ng-content>
+  </div>
+</div></code></pre>
+
+            </section>
+<section>
+  <h1>Ciclo de Vida</h1>
+  <ul>
+    <li><code>ngOnChanges</code> - cuando cambia un binding input</li>
+    <li><code>ngOnInit</code> - despues del primer <code>ngOnChanges</code></li>
+    <li><code>ngDoCheck</code> - despues de cada change detection </li>
+    <li><code>ngAfterContentInit</code> - despues de inicializado el contenido</li>
+    <li><code>ngAfterContentChecked</code> - despues de cada checkeo del contenido</li>
+    <li><code>ngAfterViewInit</code> - despues de incializada la vista</li>
+    <li><code>ngAfterViewChecked</code> - despues de cada check de la vista</li>
+    <li><code>ngOnDestroy</code> - justo antes de destruir el componente</li>
+  </ul>
+</section>
+<section>
+  <h1>Usando otros componentes</h1>
+  <h2>@ViewChild</h2>
+  <pre><code class="js">import { Component, ViewChild } from '@angular/core';
+import { AlertComponent } from './alert.component';
+
+@Component({
+    selector: 'app-root',
+    template: `
+    <app-alert>My alert</app-alert>
+      <button (click)="showAlert()">Show Alert</button>`
+})
+export class AppComponent {
+  @ViewChild(AlertComponent) alert: AlertComponent;
+
+  showAlert() {
+    this.alert.show();
+  }
+}</code></pre>
+</section>
+<section>
+  <h1>@ViewChildren</h1>
+  <pre><code class="js">import { Component, QueryList, ViewChildren } from '@angular/core';
+import { AlertComponent } from './alert.component';
+
+@Component({
+    selector: 'app-root',
+    template: `
+    <app-alert ok="Next" (close)="showAlert(2)">
+      Step 1: Learn angular
+    </app-alert>
+    <app-alert ok="Next" (close)="showAlert(3)">
+      Step 2: Love angular
+    </app-alert>
+    <app-alert ok="Close">
+      Step 3: Build app
+    </app-alert>
+      <button (click)="showAlert(1)">Show steps</button>`
+})
+export class AppComponent {
+  @ViewChildren(AlertComponent) alerts: QueryList<AlertComponent>;
+  alertsArr = [];
+
+  ngAfterViewInit() {
+    this.alertsArr = this.alerts.toArray();
+  }
+
+  showAlert(step) {
+    this.alertsArr[step - 1].show(); // step 1 is alert index 0
+  }
+}</code></pre>
+</section>
+<section>
+  <h1>Content Children</h1>
+  <h2>@ContentChild y @ContentChildren</h2>
+  trabajan de la misma forma que @ViewChild y @ViewChildren pero sobre el contenido proyectado
+</section>
+<section>
+  <h1>ElementRef</h1>
+  <pre><code class="js">import { AfterContentInit, Component, ElementRef } from '@angular/core';
+
+@Component({
+    selector: 'app-root',
+    template: `
+    <h1>My App</h1>
+    <pre>
+      <code>{{ node }}</code>
+    </pre>
+  `
+})
+export class AppComponent implements AfterContentInit {
+  node: string;
+
+  constructor(private elementRef: ElementRef) { }
+
+  ngAfterContentInit() {
+    const tmp = document.createElement('div');
+    const el = this.elementRef.nativeElement.cloneNode(true);
+
+    tmp.appendChild(el);
+    this.node = tmp.innerHTML;
+  }
+
+}</code></pre>
+</section>
+            <section>
               <h1>Variables de Referencia de un template</h1>
               <pre><code class="html">
 &lt;!-- phone refers to the input element; pass its `value` to an event handler --&gt;&#10;  &lt;input #phone placeholder=&quot;phone number&quot;&gt;&#10;  &lt;button (click)=&quot;callPhone(phone.value)&quot;&gt;Call&lt;/button&gt;&#10;&#10;  &lt;!-- fax refers to the input element; pass its `value` to an event handler --&gt;&#10;  &lt;input ref-fax placeholder=&quot;fax number&quot;&gt;&#10;  &lt;button (click)=&quot;callFax(fax.value)&quot;&gt;Fax&lt;/button&gt;&#10;</code></pre>
