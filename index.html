@@ -431,11 +431,171 @@ import { AppModule } from './app.module';
 platformBrowserDynamic().bootstrapModule(AppModule);</code></pre>
             </section>
             </section>
+                <section>
+                    <section>
+                        <h1>Angular Routing</h1>
+                        <p>En una SPA no hace falta el ruteo entonces</p>
+                        <h3>Porque Routear</h3>
+                        <ul>
+                            <li>Estado de la App</li>
+                            <li>Modularizar la App</li>
+                            <li>Implementar restricciones de roles</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Configuracion</h1>
+                        <h2>Base URL Tag</h2>
+                        <pre><code><base href="/"></code></pre>
+                        <pre><code><router-outlet></router-outlet></code></pre>
+
+                    </section>
+                    <section>
+                        <h1>Objeto de Definicion de Ruta</h1>
+                        <p>Las rutas de una app estan en una array, el orden es importante</p>
+                        <p>Con este array y el RouterModule se crean las rutas</p>
+                        <pre><code class="js">
+    const routes: Routes = [
+      { path: 'component-one', component: ComponentOne },
+      { path: 'component-two', component: ComponentTwo },
+      { path: 'component-three', component: ComponentTwo },
+        { path: '', redirectTo: 'component-one', pathMatch: 'full' },
+
+
+    ];
+    export const routing = RouterModule.forRoot(routes);
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>Configuracion de Rutas</h1>
+                        <p>Despues se importa este modulo</p>
+                        <pre><code class="js">
+...
+import { routing } from './app.routes';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    routing
+  ],
+  declarations: [
+    AppComponent,
+    ComponentOne,
+    ComponentTwo
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule {
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>Links entre rutas</h1>
+                        <h3>RouterLink</h3>
+                        <pre><code class="html"><a routerLink="/component-one">Component One</a></code></pre>
+                        <h3>Navegando por programa</h3>
+                        <pre><code class="js">this.router.navigate(['/component-one']);</code></pre>
+                    </section>
+                    <section>
+                        <h1>Parametros de Rutas</h1>
+                        <pre><code class="js">
+    export const routes: Routes = [
+  { path: '', redirectTo: 'product-list', pathMatch: 'full' },
+  { path: 'product-list', component: ProductList },
+  { path: 'product-details/:id', component: ProductDetails }
+];
+</code></pre>
+                        <pre><code class="js">
+goToProductDetails(id) {
+  this.router.navigate(['/product-details', id]);
+}
+</code></pre>
+
+                    </section>
+                    <section>
+                        <h1>Parametros de Rutas</h1>
+                        <pre><code class="js">
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'product-details',
+  template: `
+    <div>
+      Showing product details for product: {{id}}
+    </div>
+  `,
+})
+export class LoanDetailsPage implements OnInit, OnDestroy {
+  id: number;
+  private sub: any;
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+       this.id = +params['id']; // (+) converts string 'id' to a number
+
+       // In a real app: dispatch action to load the details here.
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+}
+</code></pre>
+
+                    </section>
+                    <section>
+                        <h1>Guards</h1>
+                        <pre><code class="js">
+import { Routes, RouterModule } from '@angular/router';
+import { AccountPage } from './account-page';
+import { LoginRouteGuard } from './login-route-guard';
+import { SaveFormsGuard } from './save-forms-guard';
+
+const routes: Routes = [
+  { path: 'home', component: HomePage },
+  {
+    path: 'accounts',
+    component: AccountPage,
+    canActivate: [LoginRouteGuard],
+    canDeactivate: [SaveFormsGuard]
+  }
+];
+
+export const appRoutingProviders: any[] = [];
+
+export const routing = RouterModule.forRoot(routes);
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>CanActivate</h1>
+
+                        <pre><code class="js">
+import { CanDeactivate } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { AccountPage } from './account-page';
+
+@Injectable()
+export class SaveFormsGuard implements CanDeactivate<AccountPage> {
+
+  canDeactivate(component: AccountPage) {
+    return component.areFormsSaved(); //   Observable<boolean>|Promise<boolean>|boolean;
+  }
+
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h1></h1>
+                    </section>
+                </section>
             </div>
             <div class="footer">
               <a href="https://github.com/aotaduy"></a>
               <span>Ing. Andres Otaduy</span>
-
 
             </div>
         </div>
