@@ -578,10 +578,10 @@ import { Injectable } from '@angular/core';
 import { AccountPage } from './account-page';
 
 @Injectable()
-export class SaveFormsGuard implements CanDeactivate<AccountPage> {
+export class SaveFormsGuard implements CanDeactivate {
 
   canDeactivate(component: AccountPage) {
-    return component.areFormsSaved(); //   Observable<boolean>|Promise<boolean>|boolean;
+    return component.areFormsSaved();
   }
 
 }
