@@ -26,7 +26,7 @@
         <div class="reveal">
             <div class="slides">
               <section>
-                <h1>Angular 2 - 4</h1>
+                <h1>Angular 7</h1>
                 <h2>Utn Rosario</h2>
                 <h3>TTADS</h3>
                 <h3>
@@ -35,18 +35,19 @@
                     Técnicas y Tecnologías Avanzadas de Desarrollo de Software</a>
                 </h3>
                 <p>
-                  <a href="https://github.com/aotaduy">Ing. Andres Otaduy</a>
+                    <a href="https://github.com/aotaduy">Ing. Andres Otaduy</a>
+                    <a href="https://github.com/adrianmeca">Ing. Adrian Meca</a>
                 </p>
             </section>
 
 
             <section>
               <section>
-                <h1>Angular 2 Intro</h1>
+                <h1>Angular 7 Intro</h1>
                 <ul>
                   <li>TypeScript -> ES6</li>
-                  <li>Modules Ng and ES6</li>
-                  <li>Components</li>
+                  <li>Modulos Ng and ES6</li>
+                  <li>Componentes</li>
                   <li>Templates</li>
                   <li>Bootstraping</li>
                   <li>Data Binding</li>
@@ -63,20 +64,20 @@
                   <li>Modularidad (ES6)</li>
                   <li>RxJs - Reactive Programming</li>
                   <li>Mejor Performance</li>
-                  <li>Architecture un poco mas simple</li>
+                  <li>Architectura un poco mas simple</li>
                   <li>CSS Modular</li>
-                  <li>Mejor deteccion de cambios</li>
+                    <li>Testeabilidad</li>
+                <li>Una Arquitectura completa</li>
                 </ul>
               </section>
               <section>
                 <h1>Angular 2 Contras</h1>
                 <ul>
-                  <li>Todavia esta muy nuevo</li>
-                  <li>Usa TypeScript</li>
+                  <li>Usa TypeScript casi obligatoriamente</li>
                   <li>Cambio total con respecto a angular 1</li>
-                  <li>Complejo</li>
-                  <li>Syntaxis de los templates</li>
-                  <li></li>
+                    <li>Framework Complejo</li>
+                    <li>Una Arquitectura completa</li>
+                    <li>Syntaxis de los templates mas alejada de html</li>
                 </ul>
               </section>
               <section>
@@ -86,14 +87,55 @@
               <section>
                 <h1>Componentes</h1>
                 <ul>
+                    <li>Permiten crear nuevos tags html</li>
                   <li>Se definen como clases con anotaciones</li>
                   <li>La instancia se vincula al template</li>
                   <li>Dependencias Explicitas</li>
-                  <li>HOjas de Estilos</li>
+                  <li>Hojas de Estilos modulares</li>
                   <li>Usa el Shadow Dom</li>
                   <li>Callbacks del ciclo de vida (hooks)</li>
                 </ul>
+                  <pre><code class="html"><datepicker id="date" [value]="10/10/2018"></datepicker>
+<ttads-form>
+    <users-list
+            [list]="users"
+            (onChange)="selection = $event">
+    </users-list>
+    <users-form [model]="selection"></users-form>
+</ttads-form>
+</code></pre>
+
               </section>
+                <section>
+                    <h1>Ejemplos</h1>
+                    <h4>Componentes de material design</h4>
+                  <pre><code class="html">
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+Estp es una descripcion del perro
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-paginator [length]="100"
+               [pageSize]="10"
+               [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+
+                  </code></pre>
+                    <a href="https://material.angular.io/components/card/examples">Link</a>
+                </section>
               <section>
                 <h1>Sintaxis de un componente</h1>
                 <pre><code class="ts">import { Component } from '@angular/core';
@@ -130,19 +172,87 @@ export class AppComponent {
 &lt;h1 [ngClass]=&quot;{&apos;big&apos;: list.length &gt; 5}&quot; &gt;Todo {{list.length}}&lt;/h1&gt;&#10;  &lt;input type=&quot;text&quot; [(ngModel)]=&quot;item.text&quot;&gt;&#10;  &lt;input type=&quot;button&quot;  value=&quot;Add&quot; (click)=&quot;add(item)&quot;&gt;&#10;  &lt;ul&gt;&#10;    &lt;li&#10;    [ngClass]=&quot;{&apos;done&apos;: todoItem.done}&quot; \&#10;    *ngFor=&quot;let todoItem of list; let i = index&quot;&gt;&#10;      &lt;input type=&quot;checkbox&quot; [(ngModel)]=&quot;todoItem.done&quot;&gt;&#10;        {{todoItem.text}}&#10;        &lt;input&#10;          *ngIf=&quot;todoItem.done&quot;&#10;          (click)=&quot;remove(i)&quot;&#10;          type=&quot;button&quot;&#10;          name=&quot;name&quot;&#10;          value=&quot;X&quot;&gt;&#10;      &lt;/li&gt;&#10;  &lt;/ul&gt;
 </code></pre>
               </section>
-              <section>
-                <h1>Elementos de un template</h1>
-                <ul>
-                  <li> Propiedades del DOM y Attributos de HTML</li>
-                  <li>bindings {{}} sin efectos secundarios: expresiones</li>
-                  <li>attribute []</li>
-                  <li>events (): Statements $event available</li>
-                  <li>Two Way [()]</li>
-                  <li>Directives</li>
-                  <li>Components</li>
-                  <li>Pipes</li>
-                </ul>
-              </section>
+                <section>
+                    <h1>Template Bindings</h1>
+                    <ul>
+                        <li>Expresiones ejecutables</li>
+                        <li>Se reemplaza la expresion por su resultado</li>
+                        <li>Se detectan automaticamente los cambios.</li>
+                    </ul>
+                    <pre><code class="html">
+<h2>Resultado {{2+2}}</h2>
+{{items.length  === 0 ? 'Vacio' : items.length}}
+<input type="text" [(ngModel)]="palabras"}> #Palabras: {{palabras.split(' ').length}}
+                    </code></pre>
+                </section>
+                <section>
+                    <h1>{{Expresiones de un Template}}</h1>
+                    <ul>
+                        <li>sin efectos secundarios =, new, ++ ;</li>
+                        <li>El scope es la instancia del componente</li>
+                        <li>No hay espacio de nombres global</li>
+                        <li>Rapido</li>
+                        <li>Idempotente </li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>[Binding de atributos]</h1>
+                    <ul>
+                        <li>Sintaxis: [atributo]="expresion"</li>
+                        <li>Debe ser una expresion angular</li>
+                        <li>Si se omiten los corchetes se pasa un string</li>
+                        <li>El valor de resultado se remplaza.</li>
+                        <li>Si el atributo no esta en el dom se usa [attr.atributo]</li>
+                        <li>En nuestros componentes se pueden declarar atributos custom</li>
+
+                    </ul>
+                    <pre><code class="html">
+<input
+    [type]="isPassword ? 'password' : 'text'"
+/>
+<input
+        [attr.id]="inputId + (isPassword ? '-password' : '-text')"
+/>
+<input
+        [maxlength]="longMax * 2"
+/>
+                    </code></pre>
+                </section>
+                <section>
+                    <h1>(Eventos)</h1>
+                    <ul>
+                        <li>Sintaxis: (evento)="expresion($event)"</li>
+                        <li>Debe ser una expresion angular</li>
+                        <li>Esta disponible la variable $event</li>
+                        <li>estan disponibles todos los eventos del dom (click, focus, input, keyup, keydown, etc)</li>
+                        <li>En nuestros componentes se pueden declarar eventos custom</li>
+                    </ul>
+                    <pre><code class="html">
+<input type="text" (keyup)="update($event)">
+<button (click)="onOkClicjed()">Ok</button>
+<div (mousemove)="onMouseMove($event)" class="scrible"> </div>
+                    </code></pre>
+                </section>
+                <section>
+                    <h1>Elementos de un template</h1>
+                    <ul>
+                        <li>Codigo HTML</li>
+                        <li>bindings {{}}</li>
+                        <li>attribute []</li>
+                        <li>events (): Statements $event available</li>
+                        <li>Two Way binding [()]</li>
+                        <li>Directives</li>
+                        <li>Components</li>
+                        <li>Pipes</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Directivas del framework</h1>
+                    <ul>
+                        <li>NgClass, NgStyle</li>
+                        <li>*NgIf *NgFor *NgSwitch</li>
+                    </ul>
+                </section>
               <section>
                 <h1>{{Expresiones de un Template}}</h1>
                 <ul>
@@ -169,14 +279,7 @@ export class AppComponent {
               <pre><code class="html">&lt;button [style.color] = &quot;isSpecial ? &apos;red&apos;: &apos;green&apos;&quot;&gt;Red&lt;/button&gt;&#10;&lt;button [style.background-color]=&quot;canSave ? &apos;cyan&apos;: &apos;grey&apos;&quot; &gt;Save&lt;/button&gt;&#10;&lt;button [style.font-size.em]=&quot;isSpecial ? 3 : 1&quot; &gt;Big&lt;/button&gt;&#10;&lt;button [style.font-size.%]=&quot;!isSpecial ? 150 : 50&quot; &gt;Small&lt;/button&gt;
 </code></pre>
             </section>
-            <section>
-              <h1>Directivas del framework</h1>
-              <ul>
-                <li>Muchas de Angular 1 no hacen falta</li>
-                <li>NgClass, NGStyle</li>
-                <li>*NgId *NgFor *NgSwitch</li>
-              </ul>
-            </section>
+
             <section>
               <h1>Eventos de un componente</h1>
               <pre><code class="js">import {Component} from '@angular/core';
@@ -613,9 +716,9 @@ El usuario no puede eliminarse a si mismo
                 </section>
             </div>
             <div class="footer">
-              <a href="https://github.com/aotaduy"></a>
-              <span>Ing. Andres Otaduy</span>
-
+                <a href="https://github.com/utnfrrottads/">
+              <span>TTADS - Angular 7</span>
+                </a>
             </div>
         </div>
 
