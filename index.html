@@ -714,6 +714,98 @@ El usuario no puede eliminarse a si mismo
                         </pre>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h1>Reactive Forms</h1>
+                        <p>Framework para manejar forumalrios y validaciones en angular</p>
+                        <ul>
+                            <li>Inmutable</li>
+                            <li>Streams Observables</li>
+                            <li>Acceso sincrono</li>
+                            <li>Validacion</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Crear un form control</h1>
+                        <pre><code class="js">
+export class NameEditorComponent {
+  name = new FormControl('');
+}                        </code></pre>
+<pre><code class="html">
+<label>
+  Nombre:
+  <input type="text" [formControl]="name">
+    Nombre {{name.value}}
+</label>
+                    </code></pre>
+                    </section>
+                    <section>
+                        <h1>Modificar el valor</h1>
+<pre><code class="js">
+updateName() {
+  this.name.setValue('Nancy');
+}                        </code></pre>
+                    <pre><code class="html">
+<p>
+  <button (click)="updateName()">Update Name</button>
+</p>                     </code></pre>
+                    </section>
+                    <section>
+                        <h1>Varios controles</h1>
+<pre><code class="js">export class ProfileEditorComponent {
+  profileForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+  });
+}                       </code></pre>
+                        <pre><code class="html"><form [formGroup]="profileForm" (ngSubmit)="onSubmit()>
+
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName">
+  </label>
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName">
+  </label>
+<button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
+                    </code></pre>
+                    </section>
+                    <section>
+                        <h1>Actualizacion parciales del modelo</h1>
+                        <pre><code class="js">updateProfile() {
+  this.profileForm.patchValue({
+    firstName: 'Nancy',
+    address: {
+      street: '123 Drew Street'
+    }
+  });
+}             </code></pre>
+                    </section>
+                    <section>
+                        <h1>Validaciones</h1>
+                        <pre><code class="js">  profileForm = new FormGroup({
+    firstName: new FormControl('Andres', [Validators.required, Validators.maxlength(10)]),
+    lastName: new FormControl('', Validators.required),
+  });
+}             </code></pre>
+                    </section>
+                    <section>
+                        <h1>Validaciones Custom</h1>
+                        <pre><code class="js"> export function ValidateUrl(control: AbstractControl) {
+  if (!control.value.startsWith('https') || !control.value.includes('.io')) {
+    return { validUrl: true };
+  }
+  return null;
+}</code></pre>
+                        <pre><code class="js">  profileForm = new FormGroup({
+    url: new FormControl('Andres', [Validators.required, ValidateUrl]),
+  });
+}             </code></pre>
+                    </section>
+                </section>
             </div>
             <div class="footer">
                 <a href="https://github.com/utnfrrottads/">
