@@ -6,19 +6,19 @@
 
         <title>Angular </title>
 
-        <link rel="stylesheet" href="css/reveal.css">
-        <link rel="stylesheet" href="css/theme/white.css">
-        <link rel="stylesheet" href="css/presentation.css">
+        <link rel="stylesheet" href="./css/reveal.css">
+        <link rel="stylesheet" href="./css/theme/white.css">
+        <link rel="stylesheet" href="./css/presentation.css">
 
         <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="lib/css/zenburn.css">
+        <link rel="stylesheet" href="./lib/css/zenburn.css">
 
         <!-- Printing and PDF exports -->
         <script>
             var link = document.createElement( 'link' );
             link.rel = 'stylesheet';
             link.type = 'text/css';
-            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? './css/print/pdf.css' : './css/print/paper.css';
             document.getElementsByTagName( 'head' )[0].appendChild( link );
         </script>
     </head>
@@ -1076,7 +1076,7 @@ updateName() {
             </div>
         </div>
 
-        <script src="js/reveal.js"></script>
+        <script src="./js/reveal.js"></script>
 
         <script>
             // More info about config & dependencies:
@@ -1085,10 +1085,10 @@ updateName() {
             Reveal.initialize({
                 hash: true,
                 dependencies: [
-                    { src: 'plugin/markdown/marked.js' },
-                    { src: 'plugin/markdown/markdown.js' },
-                    { src: 'plugin/highlight/highlight.js' },
-                    { src: 'plugin/notes/notes.js', async: true }
+                    { src: './plugin/markdown/marked.js' },
+                    { src: './plugin/markdown/markdown.js' },
+                    { src: './plugin/highlight/highlight.js' },
+                    { src: './plugin/notes/notes.js', async: true }
                 ]
             });
         </script>
