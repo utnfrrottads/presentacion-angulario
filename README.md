@@ -1,7 +1,7 @@
 ## Angular
 
 # Esta Presentacion online
-http://utnfrrottads.github.io/presentacion-angulario
+http://utnfrrottads.github.io/presentacion-angulario/
 
 
 Links interesantes a la documentación de Angular
