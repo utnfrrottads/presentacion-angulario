@@ -1020,13 +1020,13 @@ updateName() {
     lastName: new FormControl(''),
   });
 }                       </code></pre>
-                        <pre><code class="html"><form [formGroup]="profileForm" (ngSubmit)="onSubmit()>
+                        <pre><code class="html">
+                            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
   <label>
     First Name:
-    <input type="text" formControlName="firstName">
+    <input type="text" formControlName="firstName"/>
   </label>
-
   <label>
     Last Name:
     <input type="text" formControlName="lastName">
