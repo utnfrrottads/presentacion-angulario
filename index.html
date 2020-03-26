@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>Angular 2, 4 </title>
+        <title>Angular </title>
 
         <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/white.css">
@@ -26,8 +26,8 @@
         <div class="reveal">
             <div class="slides">
               <section>
-                <h1>Angular 7</h1>
-                <h2>Utn Rosario</h2>
+                <h1>Angular</h1>
+                <h2>UTN Rosario</h2>
                 <h3>TTADS</h3>
                 <h3>
                   <a href="https://github.com/utnfrrottads/">
@@ -40,10 +40,272 @@
                 </p>
             </section>
 
+                <section>
+                    <section>
+                        <h2>HTML + HTTP Paginas Estaticas</h2>
+                        <a href="http://info.cern.ch/hypertext/WWW/TheProject.html">Primer pagina web</a>
+                        <a href="http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html">Emulador</a><br>
+                        <img src="img/theproject.png" alt="" height="400px" />
+                    </section>
+                    <section>
+                        <h1>Evolucion FrontEnd</h1>
+                        <h2>HTML + Imagenes + Tablas</h2>
+                        <img src="img/mosaic.png" alt=""  height="400px"/>
+                    </section>
+                    <section>
+                        <h2>Hypermedia: HTML + Imagenes + Tablas</h2>
 
+                        <img src="img/geocities1.png" alt=""  height="350px" />
+                        <img src="img/geocities2.png" alt=""  height="350px" />
+
+                    </section>
+                    <section>
+                        <h2>Web Applications</h2>
+                        <p>
+                            Perl, ASP, PHP, Apache, MySQL
+                        </p>
+                        <img src="img/yahoo.jpg" alt=""  height="350px" />
+                        <img src="img/hotmail.jpg" alt=""  height="350px" />
+
+                    </section>
+                    <section>
+                        <h2>Single Page Applications</h2>
+                        <p>
+                            NodeJs, Java, C#, MongoDB, Javascript, REST API
+                        </p>
+                        <img src="img/gmail.png" alt=""  height="300px" />
+                        <img src="img/facebook.png" alt=""  height="250px" />
+                    </section>
+                    <section>
+                        <h1>SPA: Single Page Applications</h1>
+                        <ul>
+                            <li>Servicios REST</li>
+                            <li>Frameworks Front End Angualr, ember, knockout, React</li>
+                            <li>Separacion de Intereses</li>
+                            <li>Division de Backend / Frontend</li>
+                            <li>Mobile o Mobile First</li>
+                            <li><a href="https://www.madewithangular.com/">Examples</a></li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Javascript</h1>
+                        <ul>
+                            <li>                  Libro: Javascript the good parts</li>
+                            <li>                  Conferencia en google <a href="https://www.youtube.com/watch?v=lP9-Zx_cCUg">Javascript the good parts subtitulada</a>
+                            </li>
+                            <li>                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">MDN</a>
+                            </li>
+                            <li>                <a href="https://developer.mozilla.org/es/docs/Web/JavaScript">MDN en castellano</a>
+                            </li>
+                        </ul>
+
+
+
+
+                    </section>
+                    <section>
+                        Javascript
+                        <ul>
+                            <li>Uno de los lenguajes mas usados e incomprendidos del mundo</li>
+                            <li>Obligatorio para programar en el browser</li>
+                            <li>Interfaz con el <a href="https://www.xml.com/pub/a/1999/07/dom/xml_dom.gif">DOM </a> </li>
+                            <li>Sintaxis de C, Semantica de Scheme</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Javascript influencias</h1>
+                        <ul>
+                            <li>Scheme</li>
+                            <li>Java</li>
+                            <li>Self</li>
+                            <li>Perl</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Correr JS</h1>
+                        <ul>
+                            <li>Embebido</li>
+                            <li>Scripts</li>
+                            <li>NodeJs</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Javascript Good Parts</h1>
+                        <ul>
+                            <li>Loose Typing</li>
+                            <li>Objetos Dinamicos</li>
+                            <li>Funciones de Orden Superior</li>
+                            <li>Funciones Lambda</li>
+                            <li>Funciones Clousures</li>
+                            <li>Objetos Literales</li>
+                            <li>Herencia prototipica</li>
+                            <li>Es facil!</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Funciones de Orden Superior</h1>
+                        <pre><code class="js">
+                  function paraCada(unArray, unaFuncion) {
+                    for (i=0; i < unArray.length; i++) {
+                      unaFuncion(unArray[i], i);
+                    }
+                  }
+
+                  paraCada([10,20,'hola', 'que', 87], function(elem, index) {
+                    console.log('Elemento:', elem, index)
+                  });
+
+                  function mapear(unArray, unaFuncion) {
+                    var answer = [];
+                    for (i=0; i < unArray.length; i++) {
+                      answer.push(unaFuncion(unArray[i], i));
+                    }
+                    return answer;
+                  }
+
+                  function cuad(a) {
+                    return a*a;
+                  }
+
+                  console.log(mapear([1,2,3,4,5], cuad));
+                </code></pre>
+                    </section>
+                    <section>
+                        <h1>Funciones Lambda</h1>
+                        <pre><code class="js">var cuad, cubo, array = [1,2,3,4];
+cuad = function(a){
+  return a * a;
+};
+cubo = function(a) {
+  return cuad(a) * a;
+};
+var array = [3,5,7,9,11,14];
+array.map(cuad) + array.map(cubo);
+console.log(array.reduce(0, suma));
+
+array.filter(function (elem){ return elem > 10})
+    .map(function (elem) { return elem * elem });
+
+function suma(a,b) {
+  return a + b;
+}
+</code></pre>
+                    </section>
+                    <section>
+                        <h1>Clousures</h1>
+                        <pre><code class="js">function makeAdder(a) {
+  return function(b) {
+    return a + b;
+  };
+}
+var x = makeAdder(5);
+var y = makeAdder(20);
+x(6); // ?
+y(7); // ?
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h1>Objetos dinamicos</h1>
+                        <pre><code class="js">var object = {name: 'Jon'};
+object.lastName = 'Smith';
+object.print = function(){
+  console.log('Name:', this.name);
+  console.log('LastName:', this.lastName)};
+object.print();</code></pre>
+                    </section>
+                    <section>
+                        <h1>Objetos Literales</h1>
+                        <pre><code class="js">{
+  "glossary":{
+    "title":"example glossary",
+    "GlossDiv":{
+      "title":"S",
+      "GlossList":{
+        "GlossEntry":{
+          "ID":"SGML",
+          "SortAs":"SGML",
+          "GlossTerm":"Standard Generalized Markup Language",
+          "Acronym":"SGML",
+          "Abbrev":"ISO 8879:1986",
+          "GlossDef":{
+            "para":"A meta-markup language, used to create markup languages such as DocBook.",
+            "GlossSeeAlso":[
+              "GML",
+              "XML"
+            ]
+          },
+          "GlossSee":"markup"
+        }
+      }
+    }
+  }
+}</code></pre>
+                    </section>
+                    <section>
+                        <h1>Herencia Prototipica</h1>
+                        <pre><code class="js">
+var padre = {nombre: 'Pepe', apellido: 'Perez'};
+var hijo = Object.create(padre);
+padre.mostrarNombre = function() { console.log(this.nombre)};
+hijo.nombre = 'Pedro';
+padre.mostrarNombre();
+hijo.mostrarNombre();
+console.log(hijo.apellido);</code></pre>
+                    </section>
+                    <section>
+                        <h1>Clases con Herencia Prototipica</h1>
+                        <pre><code class="js">// Shape - superclass
+  function Shape() {
+    this.x = 0;
+    this.y = 0;
+  }
+
+  // superclass method
+  Shape.prototype.move = function(x, y) {
+    this.x += x;
+    this.y += y;
+    console.info('Shape moved.');
+  };
+
+  // Rectangle - subclass
+  function Rectangle() {
+    Shape.call(this); // call super constructor.
+  }
+
+  // subclass extends superclass
+  Rectangle.prototype = Object.create(Shape.prototype);
+  Rectangle.prototype.constructor = Rectangle;
+
+  var rect = new Rectangle();
+
+  console.log('Is rect an instance of Rectangle?',
+    rect instanceof Rectangle); // true
+  console.log('Is rect an instance of Shape?',
+    rect instanceof Shape); // true
+  rect.move(1, 1); // Outputs, 'Shape moved.'</code></pre>
+                    </section>
+                    <section>
+                        <h1>Javascript Bad Parts</h1>
+                        <ul>
+                            <li>Interfaz con el <a href="https://www.xml.com/pub/a/1999/07/dom/xml_dom.gif">DOM </a> </li>
+                            <li>Insercion de punto y coma</li>
+                            <li>comparaciones == !=</li>
+                            <li>Es facil!</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Ejercicios</h1>
+                        <p>Crear una funcion buscar(array, criterio, siVacio), que reciba un array y dos funciiones si criterio es verdadero devolver el elemento encontrado sino doveolver el resultado de ejecutar la otra funcion "siVacio" </p>
+                        <p>Completar el ejemplo de Shape para que incluya circulos y triangulos, un metodo para mostrar cada uno por consola y un metodo para escalar cada figura en un porcentaje</p>
+                    </section>
+                </section>
             <section>
               <section>
-                <h1>Angular 7 Intro</h1>
+                <h1>Angular Intro</h1>
                 <ul>
                   <li>TypeScript -> ES6</li>
                   <li>Modulos Ng and ES6</li>
@@ -809,7 +1071,7 @@ updateName() {
             </div>
             <div class="footer">
                 <a href="https://github.com/utnfrrottads/">
-              <span>TTADS - Angular 7</span>
+              <span>TTADS - Angular</span>
                 </a>
             </div>
         </div>
