@@ -80,7 +80,7 @@
                         <h1>SPA: Single Page Applications</h1>
                         <ul>
                             <li>Servicios REST</li>
-                            <li>Frameworks Front End Angualr, ember, knockout, React</li>
+                            <li>Frameworks Front End <a href="https://www.angular.io">Angular</a>, <a href="https://emberjs.com/">ember</a>, <a href="https://knockoutjs.com/">knockout, <a href="https://es.reactjs.org/"> React</a></li>
                             <li>Separacion de Intereses</li>
                             <li>Division de Backend / Frontend</li>
                             <li>Mobile o Mobile First</li>
@@ -106,7 +106,7 @@
 
                     </section>
                     <section>
-                        Javascript
+                       <h1> Javascript </h1>
                         <ul>
                             <li>Uno de los lenguajes mas usados e incomprendidos del mundo</li>
                             <li>Obligatorio para programar en el browser</li>
@@ -147,29 +147,29 @@
                     <section>
                         <h1>Funciones de Orden Superior</h1>
                         <pre><code class="js">
-                  function paraCada(unArray, unaFuncion) {
-                    for (i=0; i < unArray.length; i++) {
-                      unaFuncion(unArray[i], i);
-                    }
-                  }
+function paraCada(unArray, unaFuncion) {
+  for (i=0; i < unArray.length; i++) {
+    unaFuncion(unArray[i], i);
+  }
+}
 
-                  paraCada([10,20,'hola', 'que', 87], function(elem, index) {
-                    console.log('Elemento:', elem, index)
-                  });
+paraCada([10,20,'hola', 'que', 87], function(elem, index) {
+  console.log('Elemento:', elem, index)
+});
 
-                  function mapear(unArray, unaFuncion) {
-                    var answer = [];
-                    for (i=0; i < unArray.length; i++) {
-                      answer.push(unaFuncion(unArray[i], i));
-                    }
-                    return answer;
-                  }
+function mapear(unArray, unaFuncion) {
+  var answer = [];
+  for (i=0; i < unArray.length; i++) {
+    answer.push(unaFuncion(unArray[i], i));
+  }
+  return answer;
+}
 
-                  function cuad(a) {
-                    return a*a;
-                  }
+function cuad(a) {
+  return a*a;
+}
 
-                  console.log(mapear([1,2,3,4,5], cuad));
+console.log(mapear([1,2,3,4,5], cuad));
                 </code></pre>
                     </section>
                     <section>
