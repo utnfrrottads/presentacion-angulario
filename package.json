@@ -1,9 +1,8 @@
 {
-  "name": "reveal.js",
-  "version": "3.9.2",
-  "description": "The HTML Presentation Framework",
-  "homepage": "http://revealjs.com",
-  "subdomain": "revealjs",
+  "name": "preeentacion-angular-io",
+  "version": "1.0.0",
+  "description": "Presentacion sobre angular",
+  "homepage": "http://www.github.com/utnfrrottads/presentacion-angulario",
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
@@ -11,8 +10,8 @@
     "build": "grunt"
   },
   "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
+    "name": "Andres Otaduy Botas",
+    "email": "andres",
     "web": "http://hakim.se"
   },
   "repository": {
