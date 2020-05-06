@@ -478,12 +478,10 @@ export class AppComponent {
                     <h1>[Binding de atributos]</h1>
                     <ul>
                         <li>Sintaxis: [atributo]="expresion"</li>
-                        <li>Debe ser una expresion angular</li>
                         <li>Si se omiten los corchetes se pasa un string</li>
                         <li>El valor de resultado se remplaza.</li>
                         <li>Si el atributo no esta en el dom se usa [attr.atributo]</li>
                         <li>En nuestros componentes se pueden declarar atributos custom</li>
-
                     </ul>
                     <pre><code class="html">
 <input
@@ -532,35 +530,64 @@ export class AppComponent {
                         <li>*NgIf *NgFor *NgSwitch</li>
                     </ul>
                 </section>
-              <section>
-                <h1>{{Expresiones de un Template}}</h1>
-                <ul>
-                  <li>sin efectos secundarios =, new, ++ ;</li>
-                  <li>El scope es la instancia del componente</li>
-                  <li>No hay espacio de nombres global</li>
-                  <li>Rapido</li>
-                  <li>Simple</li>
-                  <li>Idempotente </li>
-                </ul>
-                <h2>Template Statements</h2>
-              </section>
-
-              <section>
-                <h1>Bindings de Atributos, Clases y Estilos </h1>
-                <pre><code class="js">&lt;table border=1&gt;&#10;  &lt;!--  expression calculates colspan=2 --&gt;&#10;  &lt;tr&gt;&lt;td [attr.colspan]=&quot;1 + 1&quot;&gt;One-Two&lt;/td&gt;&lt;/tr&gt;&#10;&#10;  &lt;!-- ERROR: There is no `colspan` property to set!&#10;    &lt;tr&gt;&lt;td colspan=&quot;{{1 + 1}}&quot;&gt;Three-Four&lt;/td&gt;&lt;/tr&gt;&#10;  --&gt;&#10;&#10;  &lt;tr&gt;&lt;td&gt;Five&lt;/td&gt;&lt;td&gt;Six&lt;/td&gt;&lt;/tr&gt;&#10;&lt;/table&gt;</code></pre>
-              </section>
+                <section>
+                  <h1>Directiva *NgIf</h1>
+                  <p>Permite incluir o eliminar un elemento del DOM con una condición</p>
+<pre><code class="html"><div *ngIf="list.length === 0">
+  No hay resultados en la lista
+</div>
+<div *ngIf="list.length > 0">
+  <ul>
+    <li>Elemento 1</li>
+    <li>Elemento 2</li>
+  </ul>
+</div>
+</code></pre>
+                </section>
+                <section>
+                  <h1>Directiva  NgClass</h1>
+                  <p>Permite incluir o eliminar classes de un elemento dinamicamente</p>
+<pre><code class="html">  <span [ngClass]="'btn btn-primary'}">X</span>
+  <span [ngClass]="['btn', 'btn-primary']">X</span>
+  <span [ngClass]="{'btn': true, 'btn-primary': false}">X</span>
+  <span [ngClass]="getClasses()">X</span>
+  <span [class.btn]="true" [class.btn-primary]="false">X</span>
+  <span [class.btn]="isButton && isEnabled()">X</span>
+</code></pre>
+                </section>
             <section>
               <h1>Clase Binding</h1>
               <pre><code class="html">&lt;!-- toggle the &quot;special&quot; class on/off with a property --&gt;&#10;&lt;div [class.special]=&quot;isSpecial&quot;&gt;The class binding is special&lt;/div&gt;&#10;&#10;&lt;!-- binding to `class.special` trumps the class attribute --&gt;&#10;&lt;div class=&quot;special&quot;&#10;     [class.special]=&quot;!isSpecial&quot;&gt;This one is not so special&lt;/div&gt;&#10;</code></pre>
             </section>
             <section>
-              <h1>Estiilo Binding</h1>
+              <h1>Estilo Binding</h1>
               <pre><code class="html">&lt;button [style.color] = &quot;isSpecial ? &apos;red&apos;: &apos;green&apos;&quot;&gt;Red&lt;/button&gt;&#10;&lt;button [style.background-color]=&quot;canSave ? &apos;cyan&apos;: &apos;grey&apos;&quot; &gt;Save&lt;/button&gt;&#10;&lt;button [style.font-size.em]=&quot;isSpecial ? 3 : 1&quot; &gt;Big&lt;/button&gt;&#10;&lt;button [style.font-size.%]=&quot;!isSpecial ? 150 : 50&quot; &gt;Small&lt;/button&gt;
 </code></pre>
             </section>
-
             <section>
-              <h1>Eventos de un componente</h1>
+              <h1>Bindings de Atributos, Clases y Estilos </h1>
+              <pre><code class="js">&lt;table border=1&gt;&#10;  &lt;!--  expression calculates colspan=2 --&gt;&#10;  &lt;tr&gt;&lt;td [attr.colspan]=&quot;1 + 1&quot;&gt;One-Two&lt;/td&gt;&lt;/tr&gt;&#10;&#10;  &lt;!-- ERROR: There is no `colspan` property to set!&#10;    &lt;tr&gt;&lt;td colspan=&quot;{{1 + 1}}&quot;&gt;Three-Four&lt;/td&gt;&lt;/tr&gt;&#10;  --&gt;&#10;&#10;  &lt;tr&gt;&lt;td&gt;Five&lt;/td&gt;&lt;td&gt;Six&lt;/td&gt;&lt;/tr&gt;&#10;&lt;/table&gt;</code></pre>
+            </section>
+            <section>
+              <h1>Directiva  *NgFor</h1>
+              <p>Permite iterar por una coleccion y generar elementos DOM en cada iteracion</p>
+<pre><code class="html"> <ul>
+  <li 
+    *ngFor="let language of ['Javascript', 'TypeScript', 'Java', 'C#']">
+    {{language}}
+  </li>
+</ul>
+</code></pre>
+            </section>
+            <section>
+              <h1>Ejemplo</h1>
+              <p>Crear una Lista de tareas para hacer en en un unico componente Angular, usando las directivas del framework</p>
+              <p>La lista se compone de un input de texto con un boton de agregar y una lista de tareas donde cada una se puede eliminar tambien con un botón</p>
+              <p>Ademas puede setear cada tarea como completada/incompleta con un boton adicional en cada una </p>
+              <a href="http://todomvc.com/examples/angularjs/#/">Ejemplo</a>
+            </section>
+            <section>
+              <h1>Ejemplo de Eventos Custom</h1>
               <pre><code class="js">import {Component} from '@angular/core';
 
 @Component({
@@ -599,7 +626,7 @@ export class CounterComponent {
 }</code></pre>
             </section>
             <section>
-              <h1>Two Way Binding</h1>
+              <h1>Custom Two Way Binding</h1>
               <pre><code class="html"><input [(ngModel)]="name" >
 <input [ngModel]="name" (ngModelChange)="name=$event"></code></pre>
 <pre><code class="js">import { Component, Input, Output, EventEmitter } from '@angular/core';
