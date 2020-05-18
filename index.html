@@ -646,7 +646,7 @@ export class CounterComponent {
 }</code></pre>
             </section>
             <section>
-              <h1>Projeccion de Contenido</h1>
+              <h1>Proyeccion de Contenido</h1>
               <pre><code class="js">import { Component } from '@angular/core';
 
 @Component({
@@ -695,19 +695,32 @@ export class ChildComponent {
 </div></code></pre>
 
             </section>
+                <section>
+                    <h1>Ciclo de Vida</h1>
+                    <ul>
+                        <li><code>ngOnChanges</code> - cuando cambia un binding input</li>
+                        <li><code>ngOnInit</code> - despues del primer <code>ngOnChanges</code></li>
+                        <li><code>ngDoCheck</code> - despues de cada change detection </li>
+                        <li><code>ngAfterContentInit</code> - despues de inicializado el contenido</li>
+                    </ul>
+                </section>
 <section>
   <h1>Ciclo de Vida</h1>
   <ul>
-    <li><code>ngOnChanges</code> - cuando cambia un binding input</li>
-    <li><code>ngOnInit</code> - despues del primer <code>ngOnChanges</code></li>
-    <li><code>ngDoCheck</code> - despues de cada change detection </li>
-    <li><code>ngAfterContentInit</code> - despues de inicializado el contenido</li>
-    <li><code>ngAfterContentChecked</code> - despues de cada checkeo del contenido</li>
-    <li><code>ngAfterViewInit</code> - despues de incializada la vista</li>
-    <li><code>ngAfterViewChecked</code> - despues de cada check de la vista</li>
-    <li><code>ngOnDestroy</code> - justo antes de destruir el componente</li>
+      <li><code>ngAfterContentChecked</code> - despues de cada checkeo del contenido</li>
+      <li><code>ngAfterViewInit</code> - despues de incializada la vista</li>
+      <li><code>ngAfterViewChecked </code> - despues de cada check de la vista</li>
+      <li><code>ngOnDestroy</code> - justo antes de destruir el componente</li>
   </ul>
 </section>
+                <section>
+                    <h1>Ciclo de Vida mas importantes</h1>
+                    <ul>
+                        <li><code>ngOnInit</code> - despues del primer <code>ngOnChanges</code></li>
+                        <li><code>ngOnChanges</code> - cuando cambia un binding input</li>
+                        <li><code>ngOnDestroy</code> - justo antes de destruir el componente</li>
+                    </ul>
+                </section>
 <section>
   <h1>Usando otros componentes</h1>
   <h2>@ViewChild</h2>
