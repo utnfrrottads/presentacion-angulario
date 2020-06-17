@@ -969,6 +969,160 @@ private: BreakpointService) {}
                 </section>
                 <section>
                     <section>
+                        <h2>Que es la WWW</h2>
+                        <p>
+                            La World Wide Web (Web), es una red de recursos de información.
+                        </p>
+                        <ol>
+                            <li>Un esquema uniforme de nombres para localizar recursos en la Web (p.ej., URIs).</li>
+                            <li>Protocolos, para acceder a recursos con nombre en la Web (p.ej., HTTP).</li>
+                            <li>Hipertexto, para navegar fácilmente entre recursos (p.ej., HTML, DOM).</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>URI: Uniform Resource Identifier</h2>
+                        <pre>scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]</pre>
+                        Ejemplos
+                        <ul>
+                            <li>http://www.google.com</li>
+                            <li>https://andres.otaduy:mypassword@frro.utn.edu.ar/~aotaduy/test.php</li>
+                            <li>http://andres.otaduy:mypassword@frro.utn.edu.ar/~aotaduy/test.php</li>
+                            <li>ftp://example.org/resource.txt</li>
+                            <li>mailto:max@provider.com</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>HTTP</h1>
+                        <p>Hyper Text transfer protocol</p>
+                        <p>Actualmente el protocolo por defecto para trabajar en el browser</p>
+                        <p>Ultimamente el mas popular para intercambio de datos entre aplicaciones</p>
+                    </section>
+                    <section>
+                        <h2>Protocolo HTTP</h2>
+                        <ul>
+                            <li>Client - Server</li>
+                            <li>Request - Response</li>
+                            <li>Recursos a traves de URL's</li>
+                            <li>Stateless: Sin estado</li>
+                            <li>Conectionless: Sin conexion</li>
+                            <li>Texto plano</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>HTTP Request</h2>
+                        <ul>
+                            <li>Verb</li>
+                            <li>Header</li>
+                            <li>Header Fields</li>
+                            <li>Body (opcional)</li>
+                        </ul>
+                        <pre>
+  GET /u/1819149?s=64&v=4 HTTP/1.1
+  Host: avatars0.githubusercontent.com
+  Pragma: no-cache
+  Cache-Control: no-cache
+  User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3)
+  Accept: image/webp,image/apng,image/*,*/*;q=0.8
+  Referer: https://github.com/
+  Accept-Encoding: gzip, deflate, br
+  Accept-Language: en-US,en;q=0.9,es;q=0.8</pre>
+                    </section>
+                    <section>
+                        <h2>HTTP Verbs</h2>
+                        <ul>
+                            <li>GET</li>
+                            <li>POST</li>
+                            <li>HEAD</li>
+                            <li>PUT</li>
+                            <li>DELETE</li>
+                            <li>OPTIONS</li>
+                            <li>... <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">Ver mas</a> </li>
+                        </ul>
+                        Algunos metodos son idempotentes como DELETE, y PUT
+                    </section>
+                    <section>
+                        <h2>HTTP Response</h2>
+                        <pre>Accept-Ranges:bytes
+Access-Control-Allow-Origin:*
+Cache-Control:max-age=300
+Connection:keep-alive
+Content-Length:2581
+Content-Security-Policy:default-src 'none'
+Content-Type:image/jpeg
+Date:Wed, 14 Mar 2018 20:03:17 GMT
+Expires:Wed, 14 Mar 2018 20:08:17 GMT
+Last-Modified:Mon, 26 Aug 2013 02:08:22 GMT
+Source-Age:2069
+Strict-Transport-Security:max-age=31557600
+Timing-Allow-Origin:https://github.com</pre>
+                        <ul>
+                            <li>Status line - Response Code</li>
+                            <li>Response Headers</li>
+                            <li>Body</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>HTTP Response codes</h2>
+                        <ul>
+                            <li>1xx Informational responses.</li>
+                            <li>2xx Success. (200-OK, 201-Created)</li>
+                            <li>3xx Redirection. (301-Moved Permanently)</li>
+                            <li>4xx Client errors.(400 Bad request, 401)</li>
+                            <li>5xx Server errors. (501 Not implemented, 500)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Angular y HTTP</h1>
+                        <p>En la version 9 solo podemos usar el HttpClientModule</p>
+                        <p>En versiones anteriores habia otra opción</p>
+                        <p>El modulo usa observables para la notificación y manejo de ejecución asincrona</p>
+                    </section>
+                    <section>
+                        <h1>Observable</h1>
+                        <p>Basicamente es un objeto que mantiene una lista de suscriptores a los que les avisa cuando se produce un cambio</p>
+                    </section>
+                    <section>
+                        <h1>RxJS</h1>
+                        <img src="/img/rx-js-logo.png" alt="">
+                        <p>Es una bibliototeca para el manejo de eventos, <a href="https://rxjs-dev.firebaseapp.com/">documentación</a></p>
+                    </section>
+                    <section>
+                        <h1>Angular y Http</h1>
+                        <p>En angular el cliente de http devuelve un observable que emite un evento cuando llega la respuesta</p>
+                        <pre><code class="js">import { Injectable } from '@angular/core';
+
+@Injectable()
+export class TodoService {
+  list = [];
+  constructor(private: http: HttpClient) { }
+  getList() {
+    this.http.get('https://myapi.todo.com/v1/items')
+        .subscribe(response => this.list = response.items)
+                            }
+  }</code></pre>
+                    </section>
+                    <section>
+                        <h1>Angular y Http</h1>
+                        <p>También cuando hacemos guardamos un dato, tenemos que suscribirnos, sino no se hace la llamada</p>
+                        <pre><code class="js">import { Injectable } from '@angular/core';
+
+@Injectable()
+export class TodoService {
+  list = [];
+  constructor(private: http: HttpClient) { }
+  addItem() {
+    this.http.post('https://myapi.todo.com/v1/item',
+      {description: 'comprar yerba', isCompleted: false}
+    ).subscribe(response => this.list = response.items)
+  }
+  }</code></pre>
+                    </section>
+                </section>
+
+
+                </section>
+                <section>
+                    <section>
                         <h1>Angular Routing</h1>
                         <p>En una SPA no hace falta el ruteo entonces</p>
                         <h3>Porque Routear</h3>
