@@ -999,6 +999,7 @@ private: BreakpointService) {}
                     </section>
                     <section>
                         <h2>Protocolo HTTP</h2>
+                        <img src="img/http-protocol.png" alt="http" height="400px">
                         <ul>
                             <li>Client - Server</li>
                             <li>Request - Response</li>
@@ -1079,11 +1080,12 @@ Timing-Allow-Origin:https://github.com</pre>
                     </section>
                     <section>
                         <h1>Observable</h1>
+                        <img src="img/observable.png" alt="">
                         <p>Basicamente es un objeto que mantiene una lista de suscriptores a los que les avisa cuando se produce un cambio</p>
                     </section>
                     <section>
                         <h1>RxJS</h1>
-                        <img src="/img/rx-js-logo.png" alt="">
+                        <img src="img/rx-js-logo.png" alt="" height="300px">
                         <p>Es una bibliototeca para el manejo de eventos, <a href="https://rxjs-dev.firebaseapp.com/">documentación</a></p>
                     </section>
                     <section>
@@ -1117,8 +1119,82 @@ export class TodoService {
   }
   }</code></pre>
                     </section>
-                </section>
+                        <section>
+                            <h1>Http Errores</h1>
+                            <p>Los observables incluyen varias formas de manejo de error, ya sea con una callback</p>
+                            <pre><code class="js">import { Injectable } from '@angular/core';
 
+@Injectable()
+export class TodoService {
+  list = [];
+  constructor(private: http: HttpClient) { }
+  getList() {
+    this.http.get('https://myapi.todo.com/v1/items')
+        .subscribe(
+            response => this.list = response.items,
+            error => this.error = error)
+                            }
+  }</code></pre>
+                        </section>
+                    <section>
+                        <h1>Http Errores</h1>
+                        <p>Operadores como catchError</p>
+                        <pre><code class="js">import { Injectable } from '@angular/core';
+
+@Injectable()
+export class TodoService {
+  list = [];
+  constructor(private: http: HttpClient) { }
+  getList() {
+    this.http.get('https://myapi.todo.com/v1/items')
+        .pipe(catchError(error => {return []}))
+        .subscribe(response => this.list = response.items)
+    }
+  }</code></pre>
+                    </section>
+                    <section>
+                        <h1>Opciones por defecto</h1>
+                        <p>Por defecto se trabaja con json y se observa el body</p>
+                        <pre><code class="js">options: {
+    headers?: HttpHeaders | {[header: string]: string | string[]},
+    observe?: 'body' | 'events' | 'response',
+    params?: HttpParams|{[param: string]: string | string[]},
+    reportProgress?: boolean,
+    responseType?: 'arraybuffer'|'blob'|'json'|'text',
+    withCredentials?: boolean,
+  }</code></pre>
+                    </section>
+                    <section>
+                        <h1>Headers</h1>
+                        <p>Para setear headers se utiliza el objeto options</p>
+                        <pre><code class="js">const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
+   this.http.post(url, body, options).subscribe()
+  }</code></pre>
+                    </section>
+                    <section>
+                        <h1>Ejercicio</h1>
+                        Vamos usar la api de <a href="https://github.com/gothinkster/realworld">realWorld app </a>
+                        <ol>
+                            <li>
+                                Usando la API de <a href="https://github.com/gothinkster/realworld/tree/master/api#endpoints">RealWorld</a> hacer una nube de tags que me permita obtener los tags del sitio y al hacer click en uno de ellos me muestre los primeros 5 articulos completos de cada TAG. Mostrando titulo, descripcion body fecha de creacion y lista de tags asociada a ese articulo.
+                            </li>
+
+                        </ol>
+
+                    </section>
+                    <section><h1>
+                        Ejercicio 2
+                    </h1>
+                    <p>
+                        Con un usuario hardocdeado agregar un boton a un articulo del ejercicio anterior y hacer que le agregue un comentario ingresado en un textarea. tenemos que llamar el metodo login que nos va a devolver un objeto con un token. Ese token lo tenemos que agregar en un header del post para agregar el comentario con el siguiente formato</p>
+                <pre>Authorization: Token [aca concatenado va el token obtenido]</pre>
+                    </section>
+                </section>
 
                 </section>
                 <section>
