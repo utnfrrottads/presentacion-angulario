@@ -1218,17 +1218,14 @@ export class TodoService {
 
                     </section>
                     <section>
-                        <h1>Objeto de Definicion de Ruta</h1>
-                        <p>Las rutas de una app estan en una array, el orden es importante</p>
+                        <h1>Definicion de Ruta</h1>
+                        <p>Las rutas de una app estan en una array,</p>
                         <p>Con este array y el RouterModule se crean las rutas</p>
-                        <pre><code class="js">
-    const routes: Routes = [
+                        <pre><code class="js">const routes: Routes = [
       { path: 'component-one', component: ComponentOne },
       { path: 'component-two', component: ComponentTwo },
       { path: 'component-three', component: ComponentTwo },
-        { path: '', redirectTo: 'component-one', pathMatch: 'full' },
-
-
+      { path: '', redirectTo: 'component-one', pathMatch: 'full' },
     ];
     export const routing = RouterModule.forRoot(routes);
                         </code></pre>
