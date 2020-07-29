@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <base href="https://utnfrrottads.github.io/presentacion-angulario/" />
-        <title>Angular </title>
+        <title>Presentación Angular - TTADS - UTN - FRRO </title>
 
         <link rel="stylesheet" href="./css/reveal.css">
         <link rel="stylesheet" href="./css/theme/white.css">
@@ -1379,13 +1379,28 @@ El usuario no puede eliminarse a si mismo
                 <section>
                     <section>
                         <h1>Reactive Forms</h1>
-                        <p>Framework para manejar forumalrios y validaciones en angular</p>
+                        <p>Framework para manejar formularios y validaciones en angular</p>
                         <ul>
                             <li>Inmutable</li>
                             <li>Streams Observables</li>
                             <li>Acceso sincrono</li>
                             <li>Validacion</li>
                         </ul>
+                    </section>
+                    <section>
+                        <h1>Habilitar ReactiveForms</h1>
+                        <pre><code class="js">@NgModule({
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule
+  ],
+  declarations: [
+    AppComponent,
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule {
+}                       </code></pre>
                     </section>
                     <section>
                         <h1>Crear un form control</h1>
